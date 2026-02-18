@@ -1294,6 +1294,26 @@
 .venu-tier-plus { font-weight: 400; color: #78716c; }
 .venu-tier-period { font-size: 0.9375rem; font-weight: 500; color: #57534e; }
 
+/* Venu+ plus sign – gold, shining, subtle sparkle */
+.venu-plus-sign {
+  color: var(--venu-accent);
+  display: inline-block;
+  animation: venu-plus-sparkle 3s ease-in-out infinite;
+}
+@keyframes venu-plus-sparkle {
+  0%, 100% {
+    text-shadow: 0 0 8px rgba(184, 134, 11, 0.6), 0 0 16px rgba(184, 134, 11, 0.3);
+    filter: brightness(1);
+  }
+  50% {
+    text-shadow: 0 0 14px rgba(184, 134, 11, 0.9), 0 0 24px rgba(184, 134, 11, 0.5);
+    filter: brightness(1.15);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .venu-plus-sign { animation: none; text-shadow: 0 0 8px rgba(184, 134, 11, 0.5); }
+}
+
 .venu-tier-subtitle {
   font-size: 0.875rem;
   color: #78716c;

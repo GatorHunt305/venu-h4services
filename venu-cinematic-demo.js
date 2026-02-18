@@ -305,13 +305,7 @@
         payBtn.style.color = '#fff';
       }
       if (successEl) successEl.classList.add('is-visible');
-      pausedByOwner = true;
-      elapsedAtPause = 31.5;
-      if (window.innerWidth >= 768) {
-        runOwnerMomentDesktop();
-      } else {
-        runOwnerMomentMobile();
-      }
+      /* Owner phone removed – timeline continues without pause */
     }
     if (t >= 32.8 && !tickHandled.to6) {
       tickHandled.to6 = true;
@@ -492,17 +486,35 @@
     }
   }
 
+  var playOverlay = document.getElementById('venu-demo-play-overlay');
+  var playOverlayBtn = document.getElementById('venu-demo-play-overlay-btn');
+
+  function onPlayOverlayClick() {
+    if (startTime !== null) return;
+    section.classList.add('demo-started');
+    if (playOverlay) playOverlay.setAttribute('aria-hidden', 'true');
+    startDemo();
+  }
+  if (playOverlay) {
+    playOverlay.addEventListener('click', onPlayOverlayClick);
+  }
+  if (playOverlayBtn) {
+    playOverlayBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      onPlayOverlayClick();
+    });
+  }
+
   var io = new IntersectionObserver(function(entries) {
     entries.forEach(function(entry) {
       if (entry.target !== section) return;
       if (entry.isIntersecting) {
         section.classList.add('is-visible');
-        if (startTime === null) {
-          startDemo();
-        } else {
+        if (startTime !== null) {
           resumeDemo();
+          if (!rafId) rafId = requestAnimationFrame(tick);
         }
-        if (!rafId) rafId = requestAnimationFrame(tick);
+        /* Demo starts only when user clicks play overlay */
       } else {
         pauseDemo();
       }
