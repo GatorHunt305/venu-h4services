@@ -1,0 +1,986 @@
+/* Venu+ Cinematic Product Demo – Watch in action section
+   Dark navy, iPhone 15 Pro mockup, 7-stage automated demo */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=DM+Serif+Display&family=Cormorant+Garamond:wght@500;600&family=Jost:wght@400;500;600&display=swap');
+
+.venu-demo-section {
+  --vd-cream: #FAF7F2;
+  --vd-charcoal: #1C1C1E;
+  --vd-gold: #C9A84C;
+  --vd-teal: #0d9488;
+  --vd-glow-teal: rgba(13, 148, 136, 0.25);
+  --vd-glow-gold: rgba(201, 168, 76, 0.2);
+  --vd-glow-green: rgba(34, 197, 94, 0.2);
+  --vd-glow-white: rgba(255, 255, 255, 0.15);
+  position: relative;
+  background: #080F1A;
+  color: #fff;
+  padding: 4rem 1.5rem 5rem;
+  overflow: hidden;
+}
+
+.venu-demo-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.06;
+  pointer-events: none;
+}
+
+.venu-demo-inner {
+  position: relative;
+  max-width: 72rem;
+  margin: 0 auto;
+}
+
+.venu-demo-headline {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 400;
+  color: #fff;
+  text-align: center;
+  margin: 0 0 0.5rem;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  position: relative;
+}
+
+.venu-demo-section.is-visible .venu-demo-headline {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.venu-demo-headline-default,
+.venu-demo-headline-moment {
+  display: block;
+  transition: opacity 0.3s ease;
+}
+
+.venu-demo-headline-moment {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.venu-demo-section.owner-moment-active .venu-demo-headline-default { opacity: 0; }
+.venu-demo-section.owner-moment-active .venu-demo-headline-moment { opacity: 1; }
+
+.venu-demo-subhead {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.65);
+  text-align: center;
+  margin: 0 0 3rem;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.6s ease-out 0.1s, transform 0.6s ease-out 0.1s;
+}
+
+.venu-demo-section.is-visible .venu-demo-subhead {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.venu-demo-layout {
+  display: grid;
+  gap: 2rem;
+  align-items: start;
+}
+
+@media (min-width: 900px) {
+  .venu-demo-layout {
+    grid-template-columns: 38% 1fr;
+    gap: 3rem;
+  }
+}
+
+/* —— Left narrative (desktop) —— */
+.venu-demo-narrative {
+  position: sticky;
+  top: 6rem;
+}
+
+.venu-demo-narrative-block {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.venu-demo-narrative-block.is-active {
+  position: relative;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.venu-demo-narrative-block[data-stage="5-owner"] {
+  opacity: 0;
+}
+
+.venu-demo-section.owner-moment-active .venu-demo-narrative-block[data-stage="5"] {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.venu-demo-section.owner-moment-active .venu-demo-narrative-block[data-stage="5-owner"] {
+  position: relative;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.venu-demo-narrative-headline {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 400;
+  color: #fff;
+  margin: 0 0 0.75rem;
+  line-height: 1.2;
+}
+
+.venu-demo-narrative-text {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  margin: 0 0 0.5rem;
+}
+
+.venu-demo-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--vd-gold);
+  margin-top: 0.5rem;
+}
+
+.venu-demo-badge-stripe { color: rgba(255, 255, 255, 0.8); }
+
+/* —— Phone zone —— */
+.venu-demo-phone-zone {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 520px;
+}
+
+/* —— Phones container: customer centered; owner pops in from the right —— */
+.venu-demo-phones-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  min-height: 480px;
+}
+
+/* Customer phone: only child in flow when owner hidden – stays centered */
+.venu-demo-customer-phone-col {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  transition: transform 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.venu-demo-section.owner-moment-active .venu-demo-customer-phone-col {
+  transform: translateX(-15%) scale(0.92);
+}
+
+.venu-demo-section.owner-moment-exit .venu-demo-customer-phone-col {
+  transition: transform 400ms cubic-bezier(0.4, 0, 1, 1);
+  transform: translateX(0) scale(1);
+}
+
+/* Owner phone: absolutely positioned to the RIGHT of customer; slides in from off-screen right */
+.venu-demo-owner-phone-col {
+  position: absolute;
+  left: calc(50% + 140px + 0.5rem);
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 280px;
+  max-width: calc(100vw - 2rem);
+  transform: translateX(120%);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 500ms cubic-bezier(0.34, 1.56, 0.64, 1), opacity 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.venu-demo-section.owner-moment-active .venu-demo-owner-phone-col {
+  transform: translateX(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.venu-demo-section.owner-moment-exit .venu-demo-owner-phone-col {
+  transition: transform 400ms cubic-bezier(0.4, 0, 1, 1), opacity 400ms cubic-bezier(0.4, 0, 1, 1);
+  transform: translateX(120%);
+  opacity: 0;
+}
+
+.venu-demo-phone-label {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 0.5rem;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.venu-demo-section.owner-moment-active .venu-demo-phone-label {
+  opacity: 1;
+}
+
+/* Left column: under the narrative guiding text (desktop); hidden until owner moment */
+.venu-demo-two-phones-copy {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: clamp(1.125rem, 2vw, 1.35rem);
+  font-weight: 400;
+  color: #fff;
+  text-align: left;
+  margin: 1.25rem 0 0;
+  padding: 0;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  position: relative;
+}
+
+.venu-demo-section.owner-moment-active.owner-moment-copy-visible .venu-demo-two-phones-copy {
+  opacity: 1;
+}
+
+.venu-demo-glow {
+  position: absolute;
+  width: 320px;
+  height: 400px;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.6;
+  transition: background 0.5s ease, opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.venu-demo-glow-teal { background: var(--vd-glow-teal); }
+.venu-demo-glow-gold { background: var(--vd-glow-gold); }
+.venu-demo-glow-green { background: var(--vd-glow-green); }
+.venu-demo-glow-white { background: var(--vd-glow-white); }
+
+.venu-demo-phone-wrap {
+  position: relative;
+  z-index: 2;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.2s, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
+}
+
+.venu-demo-section.is-visible .venu-demo-phone-wrap {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Owner phone wrap: no slide-up; visibility is controlled only by owner-phone-col (slide from right) */
+.venu-demo-owner-phone-wrap {
+  position: relative;
+  z-index: 2;
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+
+.venu-demo-section.is-visible .venu-demo-owner-phone-wrap {
+  opacity: 1;
+  transform: none;
+}
+
+/* iPhone 15 Pro frame – titanium */
+.venu-demo-phone-frame {
+  position: relative;
+  width: 280px;
+  max-width: calc(100vw - 2rem);
+  aspect-ratio: 9 / 19.5;
+  background: linear-gradient(145deg, #3d3d3d 0%, #2a2a2a 50%, #1f1f1f 100%);
+  border-radius: 3rem;
+  padding: 12px;
+  box-shadow:
+    0 0 0 2px rgba(255,255,255,0.08),
+    0 0 0 4px rgba(0,0,0,0.3),
+    0 25px 60px -15px rgba(0,0,0,0.6),
+    inset 0 1px 0 rgba(255,255,255,0.06);
+}
+
+/* Owner phone frame – black titanium */
+.venu-demo-owner-frame.venu-demo-phone-frame {
+  background: linear-gradient(145deg, #2a2a2a 0%, #1C1C1E 50%, #151518 100%);
+  box-shadow:
+    0 0 0 2px rgba(255,255,255,0.06),
+    0 0 0 4px rgba(0,0,0,0.4),
+    0 25px 60px -15px rgba(0,0,0,0.7),
+    inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+.venu-demo-owner-glow {
+  position: absolute;
+  width: 200px;
+  height: 280px;
+  border-radius: 50%;
+  background: var(--vd-glow-gold);
+  filter: blur(60px);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.venu-demo-section.owner-moment-active .venu-demo-owner-glow {
+  animation: vd-owner-glow-pulse 2s ease-out forwards;
+}
+
+@keyframes vd-owner-glow-pulse {
+  0% { opacity: 0; }
+  15% { opacity: 0.5; }
+  30% { opacity: 0.25; }
+  45% { opacity: 0.6; }
+  60%, 100% { opacity: 0.35; }
+}
+
+/* Owner screen: lock screen + notification + widget */
+.venu-demo-owner-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  border-radius: 2.25rem;
+  overflow: hidden;
+  font-family: 'DM Sans', system-ui, sans-serif;
+  padding-top: 2rem;
+  filter: brightness(0.15);
+  transition: filter 0.2s ease-out;
+}
+
+.venu-demo-owner-screen.screen-on {
+  filter: brightness(1);
+}
+
+.vd-owner-lockscreen {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 4rem;
+  color: #fff;
+}
+
+.vd-owner-time {
+  font-size: 2.5rem;
+  font-weight: 200;
+  letter-spacing: 0.02em;
+}
+
+.vd-owner-date {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 0.25rem;
+}
+
+/* Owner notification: pill → banner (like Dynamic Island) */
+.vd-owner-notification {
+  position: absolute;
+  top: 3.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 10px;
+  background: var(--vd-charcoal);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.5), 0 0 0 1px rgba(201, 168, 76, 0.2);
+  border-left: 4px solid var(--vd-gold);
+  transition: width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), height 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), padding 0.2s ease;
+  padding: 0;
+  opacity: 0;
+  z-index: 4;
+}
+
+.venu-demo-owner-screen.screen-on .vd-owner-notification {
+  opacity: 1;
+}
+
+.vd-owner-notification.is-expanded {
+  width: calc(100% - 1.5rem);
+  max-width: 260px;
+  height: auto;
+  min-height: 72px;
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.5), 0 0 0 1px rgba(201, 168, 76, 0.3), 0 0 20px rgba(201, 168, 76, 0.15);
+}
+
+.vd-owner-notif-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.35rem;
+}
+
+.vd-owner-notif-app {
+  font-size: 0.5625rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--vd-gold);
+}
+
+.vd-owner-notif-time {
+  font-size: 0.5rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.vd-owner-notif-title {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 0.15rem;
+}
+
+.vd-owner-notif-detail {
+  font-size: 0.5625rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 0.1rem;
+}
+
+.vd-owner-notif-amount {
+  font-size: 0.5625rem;
+  font-weight: 600;
+  color: var(--vd-gold);
+}
+
+/* Owner widget (lock screen style) */
+.vd-owner-widget {
+  position: absolute;
+  bottom: 2rem;
+  left: 0.75rem;
+  right: 0.75rem;
+  background: rgba(28, 28, 30, 0.9);
+  border-radius: 12px;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  z-index: 2;
+}
+
+.vd-owner-widget.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.vd-owner-widget-title {
+  font-size: 0.5625rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 0.5rem;
+}
+
+.vd-owner-widget-row {
+  font-size: 0.6875rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 0.25rem;
+}
+
+.vd-owner-widget-row:last-child { margin-bottom: 0; }
+
+.vd-owner-widget-row .vd-owner-num {
+  transition: color 0.25s ease;
+}
+
+.vd-owner-widget-row .venu-demo-num-new {
+  color: var(--vd-gold);
+}
+
+.vd-owner-widget-row .vd-owner-num.gold-flash {
+  animation: vd-gold-flash 0.4s ease;
+}
+
+@keyframes vd-gold-flash {
+  0%, 100% { color: rgba(255, 255, 255, 0.9); }
+  50% { color: var(--vd-gold); }
+}
+
+.vd-owner-arrow {
+  color: var(--vd-teal);
+  margin-left: 0.2rem;
+}
+
+.vd-owner-arrow.pulse-once {
+  animation: vd-arrow-pulse 0.5s ease;
+}
+
+@keyframes vd-arrow-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.15); }
+}
+
+.venu-demo-phone-notch {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 28px;
+  background: #000;
+  border-radius: 20px;
+  z-index: 5;
+  font-size: 0;
+}
+
+.venu-demo-phone-status {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 0.02em;
+}
+
+.venu-demo-phone-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: var(--vd-cream);
+  border-radius: 2.25rem;
+  overflow: hidden;
+  font-family: 'Jost', 'DM Sans', system-ui, sans-serif;
+  padding-top: 2rem;
+}
+
+.venu-demo-phone-progress {
+  position: absolute;
+  bottom: 6px;
+  left: 14px;
+  right: 14px;
+  height: 3px;
+  background: rgba(0,0,0,0.3);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.venu-demo-phone-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--vd-teal);
+  border-radius: 2px;
+  transition: width 0.1s linear;
+}
+
+/* —— Stages: stacked, only one visible —— */
+.venu-demo-stage {
+  position: absolute;
+  inset: 0;
+  padding: 2.5rem 1rem 1.5rem;
+  overflow-y: auto;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.venu-demo-stage.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.venu-demo-stage.slide-out-left {
+  animation: vd-slide-out-left 0.35s ease-in-out forwards;
+}
+
+.venu-demo-stage.slide-in-right {
+  animation: vd-slide-in-right 0.35s ease-in-out forwards;
+}
+
+@keyframes vd-slide-out-left {
+  to { opacity: 0; transform: translateX(-20%); }
+}
+
+@keyframes vd-slide-in-right {
+  from { opacity: 0; transform: translateX(20%); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* —— Stage 1–7 content (Lumière-style mini UI) —— */
+.vd-header { text-align: center; padding-bottom: 0.75rem; }
+.vd-rule { width: 2.5rem; height: 1px; background: var(--vd-gold); margin: 0 auto 0.5rem; opacity: 0.8; }
+.vd-wordmark { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 600; font-size: 1.5rem; color: var(--vd-charcoal); margin: 0 0 0.15rem; }
+.vd-tagline { font-size: 0.625rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--vd-gold); margin: 0 0 0.25rem; }
+.vd-meta { font-size: 0.6875rem; color: rgba(28,28,30,0.7); }
+.vd-header-small .vd-wordmark { font-size: 1.125rem; }
+.vd-header-small .vd-tagline { font-size: 0.5625rem; }
+
+.vd-services-list { border: 1px solid rgba(201,168,76,0.2); border-radius: 8px; overflow: hidden; background: rgba(255,255,255,0.5); }
+.vd-service-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 0.75rem;
+  font-size: 0.8125rem;
+  color: var(--vd-charcoal);
+  border-bottom: 1px solid rgba(28,28,30,0.06);
+  transition: background 0.2s, border-left 0.2s;
+}
+.vd-service-row:last-child { border-bottom: none; }
+.vd-service-row-selected {
+  background: var(--vd-charcoal);
+  color: var(--vd-cream);
+  border-left: 3px solid var(--vd-gold);
+}
+.vd-check { margin-left: 0.35rem; color: var(--vd-gold); }
+
+.vd-total-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0.5rem 0.75rem;
+  background: var(--vd-charcoal);
+  color: var(--vd-cream);
+  font-size: 0.75rem;
+  font-weight: 600;
+  transform: translateY(100%);
+  opacity: 0;
+  transition: transform 0.35s ease, opacity 0.35s ease;
+}
+.vd-total-bar.is-visible { transform: translateY(0); opacity: 1; }
+
+.vd-addon-prompt {
+  font-size: 0.6875rem;
+  color: rgba(28,28,30,0.8);
+  padding: 0.5rem 0.75rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.vd-addon-prompt.is-visible { opacity: 1; }
+.vd-btn-skip { margin-left: 0.5rem; padding: 0.2rem 0.5rem; font-size: 0.625rem; border: 1px solid var(--vd-gold); background: transparent; color: var(--vd-gold); border-radius: 4px; cursor: default; }
+
+.vd-cta-wrap { padding: 0.75rem 0; text-align: center; }
+.vd-btn-continue {
+  padding: 0.5rem 1rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--vd-gold);
+  background: var(--vd-charcoal);
+  border: none;
+  border-radius: 6px;
+  cursor: default;
+  transition: transform 0.2s;
+}
+.vd-btn-continue.pulse { animation: vd-pulse 0.6s ease; }
+@keyframes vd-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+}
+
+.vd-summary { font-size: 0.75rem; color: var(--vd-charcoal); margin-bottom: 0.75rem; }
+.vd-deposit-card {
+  background: var(--vd-cream);
+  border: 1px solid var(--vd-gold);
+  border-radius: 8px;
+  padding: 0.75rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.6875rem;
+  color: var(--vd-charcoal);
+  transform: translateY(-20px);
+  opacity: 0;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+.vd-deposit-card.is-visible { transform: translateY(0); opacity: 1; }
+.vd-deposit-title { font-weight: 600; color: var(--vd-gold); margin-bottom: 0.35rem; }
+.vd-deposit-card p { margin: 0 0 0.2rem; }
+
+.vd-calendar { margin-bottom: 0.75rem; }
+.vd-cal-month { font-size: 0.75rem; font-weight: 600; color: var(--vd-charcoal); margin-bottom: 0.35rem; }
+.vd-cal-weekdays { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; font-size: 0.5rem; color: var(--vd-gold); margin-bottom: 0.25rem; text-align: center; }
+.vd-cal-days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; font-size: 0.625rem; color: var(--vd-charcoal); text-align: center; }
+.vd-cal-days span { padding: 0.25rem; border-radius: 50%; }
+.vd-cal-selected { background: var(--vd-charcoal); color: var(--vd-cream); font-weight: 600; }
+
+.vd-times { margin-bottom: 0.5rem; transform: translateY(30px); opacity: 0; transition: transform 0.4s ease, opacity 0.4s ease; }
+.vd-times.is-visible { transform: translateY(0); opacity: 1; }
+.vd-time-row { padding: 0.4rem 0.5rem; font-size: 0.6875rem; border-left: 3px solid transparent; margin-bottom: 0.2rem; transition: background 0.2s, border-color 0.2s; }
+.vd-time-row-selected { background: var(--vd-charcoal); color: var(--vd-cream); border-left-color: var(--vd-gold); }
+.vd-time-unav { color: rgba(28,28,30,0.4); }
+.vd-cancel-card { font-size: 0.5625rem; color: rgba(28,28,30,0.7); margin-bottom: 0.5rem; padding: 0.35rem; background: rgba(201,168,76,0.08); border-radius: 4px; opacity: 0; transition: opacity 0.3s; }
+.vd-cancel-card.is-visible { opacity: 1; }
+
+.vd-payment-summary { font-size: 0.625rem; color: var(--vd-charcoal); margin-bottom: 0.5rem; }
+.vd-form label { display: block; font-size: 0.5625rem; color: var(--vd-charcoal); margin-bottom: 0.2rem; }
+.vd-input-wrap { display: flex; align-items: center; gap: 0.35rem; margin-bottom: 0.35rem; }
+.vd-input { width: 100%; padding: 0.4rem 0.5rem; font-size: 0.6875rem; background: var(--vd-cream); border: 1px solid rgba(28,28,30,0.2); border-radius: 4px; color: var(--vd-charcoal); }
+.vd-input-sm { width: 3rem; }
+.vd-form-row { display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.35rem; }
+.vd-form-row label { margin-bottom: 0; margin-right: 0.25rem; }
+.vd-visa { font-size: 0.5rem; font-weight: 700; color: rgba(28,28,30,0.6); }
+.vd-btn-pay {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--vd-gold);
+  background: var(--vd-charcoal);
+  border: 1px solid var(--vd-gold);
+  border-radius: 4px;
+  cursor: default;
+  margin-top: 0.5rem;
+  transition: transform 0.15s, box-shadow 0.2s;
+}
+.vd-btn-pay.is-loading { pointer-events: none; }
+.vd-btn-pay.glow { box-shadow: 0 0 0 2px rgba(201,168,76,0.4); }
+.vd-payment-success {
+  display: none;
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  background: rgba(34, 197, 94, 0.15);
+  border: 1px solid #22C55E;
+  border-radius: 6px;
+  font-size: 0.6875rem;
+  color: var(--vd-charcoal);
+  text-align: center;
+}
+.vd-payment-success.is-visible { display: block; animation: vd-fade-in 0.4s ease; }
+.vd-success-check { display: inline-block; width: 1.25rem; height: 1.25rem; background: #22C55E; color: #fff; border-radius: 50%; text-align: center; line-height: 1.25rem; font-size: 0.75rem; margin-right: 0.35rem; }
+@keyframes vd-fade-in { from { opacity: 0; } to { opacity: 1; } }
+
+.vd-success-screen { text-align: center; padding-top: 0.5rem; }
+.vd-success-icon { width: 2.5rem; height: 2.5rem; margin: 0 auto 0.5rem; background: var(--vd-gold); color: var(--vd-charcoal); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.25rem; }
+.vd-success-title { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.125rem; font-weight: 600; color: var(--vd-charcoal); margin: 0 0 0.25rem; }
+.vd-success-sub { font-size: 0.6875rem; color: rgba(28,28,30,0.7); margin: 0 0 0.5rem; }
+.vd-success-card { background: var(--vd-cream); border: 1px solid var(--vd-gold); border-radius: 8px; padding: 0.5rem; margin-bottom: 0.5rem; font-size: 0.625rem; color: var(--vd-charcoal); text-align: left; }
+.vd-success-card p { margin: 0 0 0.2rem; }
+.vd-success-btns { display: flex; flex-direction: column; gap: 0.35rem; }
+.vd-btn-outline { padding: 0.4rem; font-size: 0.6875rem; background: transparent; border: 1px solid rgba(28,28,30,0.3); border-radius: 4px; color: var(--vd-charcoal); cursor: default; }
+.vd-btn-primary { padding: 0.4rem; font-size: 0.6875rem; background: var(--vd-gold); color: var(--vd-charcoal); border: none; border-radius: 4px; font-weight: 600; cursor: default; }
+
+.vd-lockscreen {
+  position: absolute;
+  inset: 0;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 4rem;
+}
+.vd-lockscreen-time { font-size: 3rem; font-weight: 200; color: #fff; }
+.vd-notification {
+  position: absolute;
+  top: 3.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 10px;
+  background: rgba(40, 40, 45, 0.95);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  transition: width 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), height 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.vd-notification.is-expanded {
+  width: calc(100% - 1.5rem);
+  max-width: 280px;
+  height: 80px;
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+}
+.vd-notification-header { font-size: 0.5rem; color: rgba(255,255,255,0.8); margin-bottom: 0.2rem; }
+.vd-notification-from { font-size: 0.5625rem; font-weight: 600; color: #fff; }
+.vd-notification-preview { font-size: 0.5rem; color: rgba(255,255,255,0.7); margin-top: 0.15rem; }
+
+/* —— Ghost tap —— */
+.venu-demo-tap {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  pointer-events: none;
+  z-index: 10;
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  transition: none;
+}
+
+.venu-demo-tap.is-tapping {
+  animation: vd-tap-ripple 0.45s ease-out forwards;
+}
+
+@keyframes vd-tap-ripple {
+  0% { transform: translate(-50%, -50%) scale(0); opacity: 0.6; }
+  30% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
+  100% { transform: translate(-50%, -50%) scale(2); opacity: 0; }
+}
+
+/* —— Controls —— */
+.venu-demo-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.25rem;
+  padding: 0.5rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.venu-demo-phone-zone:hover .venu-demo-controls,
+.venu-demo-controls.is-visible {
+  opacity: 1;
+}
+
+.venu-demo-dots {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.venu-demo-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.4);
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.venu-demo-dot:hover { border-color: rgba(255,255,255,0.8); background: rgba(255,255,255,0.2); }
+.venu-demo-dot.is-active { background: var(--vd-teal); border-color: var(--vd-teal); }
+
+.venu-demo-pause {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.8);
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 6px;
+  padding: 0.35rem 0.65rem;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.venu-demo-pause:hover { border-color: #fff; color: #fff; }
+
+.venu-demo-reduced-motion-msg {
+  font-size: 0.8125rem;
+  color: rgba(255,255,255,0.6);
+  margin-top: 0.75rem;
+  text-align: center;
+}
+
+/* —— Mobile: owner moment = top banner only (no second phone) —— */
+.venu-demo-mobile-owner-banner,
+.venu-demo-mobile-owner-copy {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .venu-demo-owner-phone-col {
+    display: none !important;
+  }
+
+  .venu-demo-mobile-owner-banner {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    transform: translateY(-100%);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 20;
+    padding: 0.75rem 1rem;
+    background: var(--vd-charcoal);
+    border-left: 4px solid var(--vd-gold);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  }
+
+  .venu-demo-section.mobile-owner-banner-visible .venu-demo-mobile-owner-banner {
+    transform: translateY(0);
+  }
+
+  .venu-demo-mobile-owner-banner-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .venu-demo-mobile-owner-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--vd-gold);
+  }
+
+  .venu-demo-mobile-owner-line {
+    font-size: 0.8125rem;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .venu-demo-mobile-owner-copy {
+    display: block;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 0.9375rem;
+    color: rgba(255, 255, 255, 0.85);
+    text-align: center;
+    margin-top: 1rem;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  .venu-demo-section.mobile-owner-banner-visible .venu-demo-mobile-owner-copy {
+    opacity: 1;
+  }
+}
+
+/* —— Mobile: narrative below phone —— */
+.venu-demo-mobile-narrative {
+  display: block;
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+@media (min-width: 900px) {
+  .venu-demo-mobile-narrative { display: none; }
+}
+
+.venu-demo-mobile-narrative .venu-demo-narrative-headline { font-size: 1.25rem; }
+.venu-demo-mobile-narrative .venu-demo-narrative-text { font-size: 0.9375rem; color: rgba(255,255,255,0.75); }
+
+/* —— Reduced motion: static only —— */
+@media (prefers-reduced-motion: reduce) {
+  .venu-demo-headline,
+  .venu-demo-subhead,
+  .venu-demo-phone-wrap { opacity: 1; transform: none; transition: none; }
+  .venu-demo-controls { display: none; }
+  .venu-demo-reduced-motion-msg { display: block !important; }
+  .venu-demo-stage:not(.venu-demo-stage-1) { display: none !important; }
+  .venu-demo-stage-1 { opacity: 1 !important; }
+  .venu-demo-phone-progress { display: none; }
+  .venu-demo-tap { display: none !important; }
+}

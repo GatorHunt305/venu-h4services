@@ -1,0 +1,1736 @@
+/* Venu – booking & payment portal landing. Deep red, warm cream, DM Serif + DM Sans */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Serif+Display&display=swap');
+
+/* Smooth scroll (respect reduced motion) */
+.venu { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  .venu { scroll-behavior: auto; }
+}
+
+.venu {
+  --venu-red: #8B1538;
+  --venu-red-dark: #6B0F2A;
+  --venu-cream: #F8F6F1;
+  --venu-accent: #B8860B;
+  --venu-navy: #0A1628;
+  font-family: 'DM Sans', system-ui, sans-serif;
+  background: var(--venu-cream);
+  color: #292524;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.venu * { box-sizing: border-box; }
+.venu-body { margin: 0; }
+
+.venu .font-display { font-family: 'DM Serif Display', Georgia, serif; font-weight: 400; }
+
+/* Nav – transparent at top, solid navy + blur on scroll; hamburger on mobile */
+.venu-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  border-bottom: 1px solid transparent;
+  background: rgba(248,246,241,0.6);
+  backdrop-filter: blur(6px);
+  transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.venu-header-scrolled {
+  background: rgba(107,15,42,0.96);
+  backdrop-filter: blur(10px);
+  border-bottom-color: rgba(255,255,255,0.1);
+}
+.venu-header-scrolled .venu-logo { color: #fff; }
+.venu-header-scrolled .venu-logo:hover { color: var(--venu-accent); }
+.venu-header-scrolled .venu-nav a:not(.venu-cta-btn) { color: rgba(255,255,255,0.9); }
+.venu-header-scrolled .venu-nav a:not(.venu-cta-btn):hover { color: #fff; }
+.venu-header-scrolled .venu-nav-toggle { color: #fff; }
+.venu-header-scrolled .venu-nav-toggle:hover { color: var(--venu-accent); }
+
+.venu-header-inner {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 0.75rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+@media (min-width: 375px) and (max-width: 449px) { .venu-header-inner { padding: 0.75rem 1rem; } }
+
+.venu-logo {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: 1.5rem;
+  color: var(--venu-red);
+  text-decoration: none;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+.venu-logo:hover { color: var(--venu-red-dark); text-decoration: none; }
+
+/* Hamburger – mobile only */
+.venu-nav-toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0;
+  border: none;
+  background: none;
+  color: #292524;
+  cursor: pointer;
+  border-radius: 8px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.venu-nav-toggle::before {
+  content: "";
+  width: 22px;
+  height: 2px;
+  background: currentColor;
+  box-shadow: 0 -7px 0 currentColor, 0 7px 0 currentColor;
+}
+@media (min-width: 768px) { .venu-nav-toggle { display: none; } }
+@media (max-width: 767px) { .venu-nav-toggle { display: flex; } }
+
+.venu-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+.venu-nav a {
+  color: #292524;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  text-decoration: none;
+  transition: color 0.2s;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 0;
+}
+.venu-nav a:hover { color: var(--venu-red); }
+@media (max-width: 767px) {
+  .venu-nav {
+    display: none;
+    flex-basis: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0.5rem 0 1rem;
+    gap: 0;
+  }
+  .venu-nav.is-open { display: flex; }
+  .venu-nav a {
+    padding: 0.875rem 1rem;
+    min-height: 48px;
+    border-bottom: 1px solid rgba(41,37,36,0.1);
+  }
+  .venu-header-scrolled .venu-nav a { border-bottom-color: rgba(255,255,255,0.1); }
+  .venu-nav .venu-cta-btn { margin: 0.5rem 1rem 0; justify-content: center; }
+}
+
+.venu-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0.5rem 1rem;
+  background: var(--venu-accent);
+  color: #fff !important;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  border: 2px solid #9a7209;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+.venu-cta-btn:hover { background: #9a7209; color: #fff !important; text-decoration: none; border-color: #7a5c07; }
+
+/* Hero – full viewport, left copy + right phone mockup, animated mesh, staggered fade-in */
+.venu-hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  padding: 5rem 1.5rem 4rem;
+}
+@media (max-width: 390px) { .venu-hero { padding: 4.5rem 1rem 3.5rem; } }
+.venu-hero-mesh {
+  position: absolute;
+  inset: -50%;
+  background:
+    radial-gradient(ellipse 90% 70% at 15% 50%, rgba(248,246,241,0.97) 0%, rgba(139,21,56,0.4) 40%, transparent 65%),
+    radial-gradient(ellipse 80% 60% at 85% 50%, rgba(107,15,42,0.9) 0%, transparent 50%),
+    radial-gradient(ellipse 70% 80% at 50% 80%, rgba(184,134,11,0.15) 0%, transparent 45%);
+  animation: venu-mesh 18s ease-in-out infinite;
+  pointer-events: none;
+}
+.venu-hero-mesh::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+@keyframes venu-mesh {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(2%, -1%) scale(1.02); }
+  66% { transform: translate(-1%, 2%) scale(0.98); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .venu-hero-mesh { animation: none; }
+  .venu-hero-headline, .venu-hero-subheadline, .venu-hero-content .venu-hero-btns, .venu-hero-phone-wrap { animation: none; opacity: 1; transform: none; }
+  .venu-hero-phone-wrap.venu-hero-phone-visible { animation: none; }
+  .venu-rp-avail-dot { animation: none; }
+}
+
+.venu-hero-inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 80rem;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+@media (min-width: 375px) and (max-width: 390px) { .venu-hero-inner { gap: 2.5rem; } }
+@media (min-width: 1024px) {
+  .venu-hero-inner { grid-template-columns: 1fr 1fr; gap: 4rem; padding: 0 2rem; }
+}
+.venu-hero-content { order: 1; text-align: center; }
+.venu-hero-phone-wrap { order: 2; }
+.venu-hero-content .venu-hero-subheadline { margin-left: auto; margin-right: auto; }
+@media (min-width: 1024px) {
+  .venu-hero-content { order: unset; }
+  .venu-hero-phone-wrap { order: unset; }
+}
+
+.venu-hero-headline {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 400;
+  color: var(--venu-red);
+  margin: 0;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: venu-fade-up 0.7s ease-out forwards;
+}
+.venu-hero-subheadline {
+  margin-top: 1.25rem;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: #44403c;
+  max-width: 28rem;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: venu-fade-up 0.6s ease-out 0.2s forwards;
+}
+@media (min-width: 640px) { .venu-hero-subheadline { font-size: 1.125rem; } }
+@media (min-width: 1024px) { .venu-hero-subheadline { margin-left: 0; } }
+.venu-hero-content .venu-hero-btns {
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: venu-fade-up 0.6s ease-out 0.4s forwards;
+}
+.venu-hero-content .venu-hero-btns { justify-content: center; }
+@media (min-width: 1024px) { .venu-hero-content .venu-hero-btns { justify-content: center; } }
+
+.venu-hero-cta-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0.875rem 1.75rem;
+  background: var(--venu-accent);
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+.venu-hero-cta-primary:hover { background: #9a7209; color: #fff; text-decoration: none; }
+.venu-hero-cta-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  gap: 0.35rem;
+  color: var(--venu-red);
+  font-weight: 500;
+  font-size: 1rem;
+  text-decoration: none;
+  padding: 0.5rem 0.75rem;
+  transition: color 0.2s;
+}
+.venu-hero-cta-secondary:hover { color: var(--venu-red-dark); text-decoration: none; }
+.venu-hero-cta-secondary .venu-arrow { transition: transform 0.2s; }
+.venu-hero-cta-secondary:hover .venu-arrow { transform: translateX(4px); }
+
+@keyframes venu-fade-up {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* —— Hero phone: Rivera's Plumbing portal mockup (static, rich) —— */
+.venu-hero-phone-wrap {
+  --venu-rp-teal: #00C2A8;
+  --venu-rp-teal-dark: #0096A0;
+  --venu-rp-navy: #0D1B2A;
+  --venu-rp-navy-edge: #091422;
+  --venu-rp-gold: #F5C518;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  perspective: 1200px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: venu-hero-phone-enter 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+}
+.venu-hero-phone-wrap.venu-hero-phone-visible {
+  opacity: 1;
+  transform: translateY(0);
+  animation: venu-hero-phone-float 4s ease-in-out infinite;
+}
+@keyframes venu-hero-phone-enter {
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes venu-hero-phone-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.venu-hero-phone-glow {
+  display: none;
+}
+
+.venu-phone-frame.venu-hero-phone-frame {
+  position: relative;
+  z-index: 1;
+  width: 280px;
+  max-width: calc(100vw - 2rem);
+  aspect-ratio: 9 / 19.5;
+  background: linear-gradient(145deg, #3d3d3d 0%, #2a2a2a 50%, #1f1f1f 100%);
+  border-radius: 3rem;
+  padding: 12px;
+  transform: rotateY(-8deg) rotateX(4deg);
+  box-shadow:
+    0 40px 80px rgba(0, 0, 0, 0.4),
+    0 20px 40px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+@media (min-width: 640px) {
+  .venu-phone-frame.venu-hero-phone-frame {
+    width: 320px;
+    padding: 14px;
+    border-radius: 3.25rem;
+  }
+}
+
+.venu-phone-notch.venu-hero-dynamic-island {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 28px;
+  background: #000;
+  border-radius: 20px;
+  z-index: 5;
+  font-size: 0;
+}
+
+.venu-phone-screen.venu-hero-phone-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: var(--venu-rp-navy);
+  border-radius: 2.25rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  font-family: 'DM Sans', system-ui, sans-serif;
+  padding: 0;
+}
+@media (min-width: 640px) { .venu-phone-screen.venu-hero-phone-screen { border-radius: 2.5rem; } }
+
+.venu-hero-screen-reflection {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, transparent 50%, rgba(255, 255, 255, 0.03) 100%);
+  pointer-events: none;
+  z-index: 10;
+  border-radius: inherit;
+}
+
+/* Status bar */
+.venu-rp-status-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px 8px;
+  padding-top: 2.75rem;
+  background: transparent;
+  color: #fff;
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+.venu-rp-status-icons {
+  font-size: 0.75rem;
+  opacity: 0.9;
+}
+
+/* Header */
+.venu-rp-header {
+  background: radial-gradient(ellipse at center, var(--venu-rp-navy) 0%, var(--venu-rp-navy-edge) 100%);
+  padding: 12px 16px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+.venu-rp-header-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.venu-rp-logo {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: rgba(0, 194, 168, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #fff;
+}
+.venu-rp-business { flex: 1; min-width: 0; }
+.venu-rp-name {
+  font-size: 17px;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 2px;
+  line-height: 1.2;
+}
+.venu-rp-tagline {
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+}
+.venu-rp-rating {
+  flex-shrink: 0;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--venu-rp-gold);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 0.35rem 0.5rem;
+  border-radius: 9999px;
+}
+.venu-rp-rating-count { color: rgba(255, 255, 255, 0.5); font-weight: 400; font-size: 0.625rem; }
+.venu-rp-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.venu-rp-pill {
+  font-size: 10px;
+  color: #fff;
+  padding: 0.3rem 0.5rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.08);
+}
+.venu-rp-pill-licensed {
+  background: rgba(0, 194, 168, 0.15);
+  border-color: rgba(0, 194, 168, 0.3);
+  color: var(--venu-rp-teal);
+}
+
+/* Availability banner */
+.venu-rp-availability {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: rgba(0, 194, 168, 0.12);
+  border-top: 1px solid rgba(0, 194, 168, 0.2);
+  border-bottom: 1px solid rgba(0, 194, 168, 0.2);
+  flex-wrap: wrap;
+}
+.venu-rp-avail-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #22C55E;
+  flex-shrink: 0;
+  animation: venu-rp-pulse-dot 2s ease-in-out infinite;
+}
+@keyframes venu-rp-pulse-dot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.6; }
+}
+.venu-rp-avail-text {
+  flex: 1;
+  font-size: 0.6875rem;
+  color: rgba(255, 255, 255, 0.95);
+  min-width: 0;
+}
+.venu-rp-avail-cta {
+  font-size: 0.625rem;
+  font-weight: 600;
+  color: var(--venu-rp-teal);
+  flex-shrink: 0;
+}
+
+/* Services */
+.venu-rp-section-label {
+  display: block;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.08em;
+  padding: 12px 16px 8px;
+  text-transform: none;
+}
+.venu-rp-services { padding: 0 0 8px; }
+.venu-rp-services-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  padding: 0 12px;
+}
+.venu-rp-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 12px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+.venu-rp-card-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 8px;
+}
+.venu-rp-card-featured {
+  box-shadow: 0 0 20px rgba(0, 194, 168, 0.15);
+  border-color: rgba(0, 194, 168, 0.2);
+}
+.venu-rp-card-icon {
+  font-size: 18px;
+  line-height: 1;
+}
+.venu-rp-card-icon-water { filter: sepia(0.3) saturate(1.2); }
+.venu-rp-card-icon-emergency { filter: hue-rotate(-10deg) saturate(1.2); }
+.venu-rp-card-price {
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.2;
+}
+.venu-rp-card-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+}
+.venu-rp-card-meta {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.08);
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+}
+.venu-rp-card-badge {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 9px;
+  font-weight: 600;
+  color: var(--venu-rp-gold);
+  background: rgba(245, 197, 24, 0.2);
+  padding: 0.2rem 0.35rem;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+.venu-rp-badge-247 {
+  background: rgba(239, 68, 68, 0.3);
+  color: #fff;
+}
+
+/* Recent activity strip */
+.venu-rp-activity { padding: 0 0 12px; }
+.venu-rp-activity-strip {
+  display: flex;
+  gap: 8px;
+  padding: 0 12px;
+  overflow: hidden;
+  mask-image: linear-gradient(to right, black 0%, black 85%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, black 0%, black 85%, transparent 100%);
+}
+.venu-rp-activity-card {
+  flex: 0 0 140px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.venu-rp-activity-card-fade { opacity: 0.85; }
+.venu-rp-activity-name { font-size: 12px; font-weight: 700; color: #fff; }
+.venu-rp-activity-service { font-size: 10px; color: rgba(255, 255, 255, 0.6); }
+.venu-rp-activity-time { font-size: 10px; color: var(--venu-rp-teal); }
+.venu-rp-activity-status { font-size: 10px; color: rgba(255, 255, 255, 0.7); }
+.venu-rp-status-confirmed { color: #22C55E; }
+.venu-rp-status-progress { color: #F59E0B; }
+
+/* Powered by */
+.venu-rp-powered {
+  margin: 0 0 6px;
+  text-align: center;
+  font-size: 9px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* Book bar */
+.venu-rp-book-bar {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  background: linear-gradient(180deg, var(--venu-rp-teal) 0%, var(--venu-rp-teal-dark) 100%);
+  box-shadow: 0 -8px 24px rgba(0, 194, 168, 0.3);
+}
+.venu-rp-book-text {
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+}
+.venu-rp-book-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--venu-rp-teal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 640px) {
+  .venu-hero-btns a { width: 100%; text-align: center; }
+  .venu-hero-cta-secondary { justify-content: center; }
+}
+
+/* Problem block – dark background, chaotic overlapping text bubbles */
+.venu-problem-block {
+  background: #0A1628;
+  padding: 4rem 1.5rem 5rem;
+  position: relative;
+  overflow: hidden;
+}
+@media (min-width: 640px) { .venu-problem-block { padding: 5rem 2rem 6rem; } }
+
+.venu-problem-inner {
+  max-width: 52rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.venu-problem-headline {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  font-weight: 400;
+  color: #fff;
+  margin: 0 0 2.5rem;
+}
+
+.venu-problem-bubbles {
+  position: relative;
+  min-height: 380px;
+  margin: 0 auto 2rem;
+  max-width: 30rem;
+}
+@media (min-width: 640px) { .venu-problem-bubbles { min-height: 360px; max-width: 34rem; } }
+
+.venu-bubble {
+  position: absolute;
+  display: inline-block;
+  padding: 0.65rem 1rem 0.75rem;
+  font-size: 0.9rem;
+  line-height: 1.35;
+  color: #1c1917;
+  background: #e7e5e4;
+  border-radius: 18px 18px 18px 4px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  white-space: nowrap;
+  max-width: 85%;
+  white-space: normal;
+}
+.venu-bubble:nth-child(even) {
+  background: #d6d3d1;
+  border-radius: 18px 18px 4px 18px;
+}
+.venu-bubble-1 { top: 0; left: 0; transform: rotate(-6deg); z-index: 1; }
+.venu-bubble-2 { top: 3rem; right: 0; transform: rotate(5deg); z-index: 2; background: #fecaca !important; color: #991b1b !important; }
+.venu-bubble-3 { top: 9rem; left: 0; transform: rotate(-2deg); z-index: 3; background: #fecaca; color: #991b1b; }
+.venu-bubble-4 { top: 9rem; right: 5%; transform: rotate(3deg); z-index: 4; }
+.venu-bubble-5 { top: 13.5rem; left: 2%; transform: rotate(-4deg); z-index: 5; }
+.venu-bubble-6 { top: 15.5rem; right: 0; transform: rotate(2deg); z-index: 6; }
+.venu-bubble-7 { top: 18rem; left: 8%; transform: rotate(1deg); z-index: 7; background: #fecaca; color: #991b1b; }
+@media (min-width: 640px) {
+  .venu-bubble-1 { left: 2%; }
+  .venu-bubble-2 { top: 2.5rem; right: 2%; }
+  .venu-bubble-3 { top: 8.5rem; left: 2%; }
+  .venu-bubble-4 { top: 9.5rem; right: 8%; }
+  .venu-bubble-5 { top: 13rem; left: 0; }
+  .venu-bubble-6 { top: 15rem; right: 3%; }
+  .venu-bubble-7 { top: 17rem; left: 5%; }
+}
+
+.venu-problem-cta {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.9);
+}
+
+/* Solution – accent divider, white background, 2x2 tiles */
+.venu-solution-block {
+  background: #fff;
+  padding: 0 0 4rem;
+}
+@media (min-width: 640px) { .venu-solution-block { padding-bottom: 5rem; } }
+
+.venu-solution-divider {
+  height: 4px;
+  background: linear-gradient(90deg, transparent 0%, var(--venu-accent) 20%, var(--venu-accent) 80%, transparent 100%);
+  opacity: 0.9;
+}
+
+.venu-solution-inner {
+  max-width: 56rem;
+  margin: 0 auto;
+  padding: 3.5rem 1.5rem 0;
+}
+@media (min-width: 640px) { .venu-solution-inner { padding: 4.5rem 2rem 0; } }
+
+.venu-solution-headline {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  font-weight: 400;
+  color: var(--venu-red);
+  margin: 0 0 2.5rem;
+  text-align: center;
+}
+
+.venu-solution-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+@media (min-width: 640px) { .venu-solution-grid { gap: 1.5rem; } }
+
+.venu-solution-tile {
+  background: var(--venu-cream);
+  border: 1px solid #e7e5e4;
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.venu-solution-tile:hover {
+  transform: translateY(-4px);
+  border-color: rgba(184,134,11,0.35);
+  box-shadow: 0 12px 24px -8px rgba(184,134,11,0.2);
+}
+@media (prefers-reduced-motion: reduce) {
+  .venu-solution-tile { transition: box-shadow 0.2s, border-color 0.2s; }
+  .venu-solution-tile:hover { transform: none; }
+}
+
+.venu-tile-title {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: 1.125rem;
+  font-weight: 400;
+  color: #1c1917;
+  margin: 0 0 0.35rem;
+}
+.venu-tile-title::before {
+  content: "";
+  display: block;
+  width: 1.25rem;
+  height: 3px;
+  background: var(--venu-accent);
+  margin-bottom: 0.5rem;
+  border-radius: 2px;
+}
+.venu-tile-desc {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: #57534e;
+}
+
+/* Sections */
+.venu-section { padding: 4rem 1.5rem; }
+@media (min-width: 640px) { .venu-section { padding: 5rem 1.5rem; } }
+@media (min-width: 1024px) { .venu-section { padding: 6rem 2rem; } }
+.venu-section-alt { background: #fff; border-top: 1px solid #e7e5e4; border-bottom: 1px solid #e7e5e4; }
+.venu-container { max-width: 64rem; margin: 0 auto; }
+.venu-container-narrow { max-width: 48rem; margin: 0 auto; text-align: center; }
+.venu-section h2 {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: clamp(1.875rem, 4vw, 2.25rem);
+  font-weight: 400;
+  color: #1c1917;
+  margin: 0 0 1rem;
+}
+.venu-section .venu-lead { font-size: 1.125rem; color: #57534e; margin: 0; }
+
+/* Problem */
+.venu-problem .venu-lead { margin-top: 1rem; }
+
+/* How it works – "Up and running in 24 hours" (3 steps, big faded numbers, dotted line) */
+.venu-how-section {
+  background: #fff;
+  padding: 4rem 1.5rem 5rem;
+}
+@media (min-width: 640px) { .venu-how-section { padding: 5rem 2rem 6rem; } }
+
+.venu-how-inner { max-width: 64rem; margin: 0 auto; }
+
+.venu-how-headline {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  font-weight: 400;
+  color: #1c1917;
+  margin: 0 0 3rem;
+  text-align: center;
+}
+
+.venu-how-steps {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+@media (min-width: 900px) {
+  .venu-how-steps {
+    grid-template-columns: 1fr auto 1fr auto 1fr;
+    gap: 0;
+    align-items: stretch;
+  }
+}
+
+.venu-how-step {
+  position: relative;
+  text-align: center;
+  padding: 0 0.5rem;
+}
+@media (min-width: 900px) { .venu-how-step { text-align: left; padding: 0 1rem; } }
+
+.venu-how-bignum {
+  display: block;
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: clamp(4rem, 12vw, 7rem);
+  font-weight: 400;
+  line-height: 1;
+  color: rgba(139,21,56,0.12);
+  margin-bottom: -0.5rem;
+  pointer-events: none;
+}
+
+.venu-how-title {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: 1.35rem;
+  font-weight: 400;
+  color: #1c1917;
+  margin: 0 0 0.5rem;
+}
+
+.venu-how-desc {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: #57534e;
+}
+
+.venu-how-connector {
+  display: none;
+  align-self: center;
+  width: 48px;
+  height: 3px;
+  margin: 0 -0.25rem;
+  background-repeat: repeat-x;
+  background-position: 0 50%;
+  background-size: 6px 3px;
+  background-image: radial-gradient(circle at center, #a8a29e 1.5px, transparent 1.5px);
+}
+@media (min-width: 900px) { .venu-how-connector { display: block; } }
+
+/* Features */
+.venu-features-title { text-align: center; }
+.venu-features-lead { text-align: center; margin-top: 0.75rem !important; }
+.venu-features-grid { margin-top: 3.5rem; display: grid; gap: 2rem; }
+@media (min-width: 640px) { .venu-features-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .venu-features-grid { grid-template-columns: repeat(3, 1fr); } }
+.venu-feature-card {
+  background: #fff;
+  border: 1px solid #e7e5e4;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+.venu-feature-card h3 { font-family: 'DM Serif Display', Georgia, serif; font-size: 1.125rem; font-weight: 400; color: var(--venu-red); margin: 0 0 0.5rem; }
+.venu-feature-card p { margin: 0; color: #57534e; font-size: 0.9375rem; }
+
+/* Demos – CTA to try live demos (more demos added over time) */
+.venu-demos-section {
+  background: var(--venu-cream);
+  padding: 4rem 0 5rem;
+  border-top: 1px solid #e7e5e4;
+}
+.venu-demos-inner {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  text-align: center;
+}
+.venu-demos-headline {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  font-weight: 400;
+  color: #1c1917;
+  margin: 0 0 0.75rem;
+}
+.venu-demos-section .venu-demos-lead { margin-bottom: 1.5rem; }
+.venu-demos-cta {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #fff;
+  background: var(--venu-red);
+  border-radius: 9999px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.venu-demos-cta:hover { background: var(--venu-red-dark); color: #fff; }
+
+/* Industry examples – cards (horizontal scroll mobile, 3-col desktop) + modal – kept for reference, no longer in use */
+.venu-industry-section {
+  background: var(--venu-cream);
+  padding: 4rem 0 5rem;
+  border-top: 1px solid #e7e5e4;
+}
+.venu-industry-inner { max-width: 72rem; margin: 0 auto; padding: 0 1.5rem; }
+@media (min-width: 640px) { .venu-industry-inner { padding: 0 2rem; } }
+
+.venu-industry-headline {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  font-weight: 400;
+  color: #1c1917;
+  margin: 0 0 2rem;
+  text-align: center;
+}
+
+.venu-industry-cards {
+  display: flex;
+  gap: 1.25rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 0.5rem;
+  -webkit-overflow-scrolling: touch;
+}
+@media (min-width: 900px) {
+  .venu-industry-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    overflow: visible;
+    scroll-snap-type: none;
+    gap: 1.5rem;
+  }
+}
+.venu-industry-cards::after {
+  content: "";
+  flex: 0 0 1px;
+}
+@media (min-width: 900px) { .venu-industry-cards::after { display: none; } }
+
+.venu-industry-card {
+  flex: 0 0 280px;
+  scroll-snap-align: start;
+  cursor: pointer;
+  list-style: none;
+}
+@media (min-width: 900px) { .venu-industry-card { flex: none; } }
+
+.venu-card-preview {
+  background: #fff;
+  border: 1px solid #e7e5e4;
+  border-radius: 12px;
+  padding: 1.25rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  transition: box-shadow 0.2s, border-color 0.2s;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.venu-industry-card .venu-card-preview {
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.venu-industry-card:hover .venu-card-preview {
+  transform: scale(1.02);
+  border-color: rgba(184,134,11,0.4);
+  box-shadow: 0 8px 24px rgba(184,134,11,0.15);
+}
+@media (prefers-reduced-motion: reduce) {
+  .venu-industry-card .venu-card-preview { transition: box-shadow 0.2s, border-color 0.2s; }
+  .venu-industry-card:hover .venu-card-preview { transform: none; }
+}
+
+.venu-card-business {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #1c1917;
+  margin: 0 0 0.2rem;
+}
+.venu-card-type {
+  font-size: 0.75rem;
+  color: #78716c;
+  margin: 0 0 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.venu-card-services {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem;
+  font-size: 0.8125rem;
+  color: #57534e;
+  line-height: 1.6;
+}
+.venu-card-services li { padding: 0.2rem 0; }
+.venu-card-book {
+  margin-top: auto;
+  min-height: 44px;
+  padding: 0.6rem 1rem;
+  background: var(--venu-accent);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.venu-card-badge {
+  display: block;
+  margin-top: 0.75rem;
+  font-size: 0.6875rem;
+  color: #a8a29e;
+  text-align: center;
+}
+
+/* Modal */
+.venu-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+.venu-modal[hidden] { display: none; }
+
+.venu-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(10,22,40,0.6);
+  cursor: pointer;
+}
+.venu-modal-box {
+  position: relative;
+  background: #fff;
+  border-radius: 16px;
+  max-width: 420px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+}
+
+.venu-modal-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  border: none;
+  background: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: #78716c;
+  cursor: pointer;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.venu-modal-close:hover { color: #1c1917; }
+
+.venu-modal-title {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: 1.35rem;
+  font-weight: 400;
+  color: var(--venu-red);
+  margin: 0;
+  padding: 1.5rem 1.5rem 0.5rem;
+}
+
+.venu-modal-demo { padding: 0 1.5rem 1.5rem; }
+
+.venu-modal-portal {
+  border: 1px solid #e7e5e4;
+  border-radius: 12px;
+  overflow: hidden;
+  font-size: 0.875rem;
+}
+.venu-modal-header {
+  background: var(--venu-red);
+  color: #fff;
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  text-align: center;
+}
+.venu-modal-body { padding: 0.75rem 1rem; }
+.venu-modal-service {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #f5f5f4;
+}
+.venu-modal-service:last-child { border-bottom: none; }
+.venu-modal-svc-name { color: #44403c; }
+.venu-modal-svc-price { font-weight: 600; color: var(--venu-red); }
+.venu-modal-times { padding: 0.75rem 1rem; border-top: 1px solid #e7e5e4; }
+.venu-modal-times-label {
+  display: block;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #78716c;
+  margin-bottom: 0.4rem;
+}
+.venu-modal-slots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.venu-modal-slots span {
+  padding: 0.35rem 0.6rem;
+  border: 1px solid #e7e5e4;
+  border-radius: 6px;
+  font-size: 0.8125rem;
+  color: #44403c;
+}
+.venu-modal-pay {
+  margin: 0 1rem 1rem;
+  padding: 0.65rem 1rem;
+  background: var(--venu-red);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  width: calc(100% - 2rem);
+}
+.venu-modal-badge {
+  margin: 0;
+  padding: 0.5rem 1rem;
+  font-size: 0.6875rem;
+  color: #a8a29e;
+  text-align: center;
+  border-top: 1px solid #f5f5f4;
+}
+
+/* Pricing – two tiers, clean cards, hover lift */
+.venu-pricing-section {
+  background: #fff;
+  padding: 4rem 1.5rem 5rem;
+  border-top: 1px solid #e7e5e4;
+}
+@media (min-width: 640px) { .venu-pricing-section { padding: 5rem 2rem 6rem; } }
+
+.venu-pricing-inner { max-width: 56rem; margin: 0 auto; }
+
+.venu-pricing-headline {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  font-weight: 400;
+  color: #1c1917;
+  margin: 0 0 0.5rem;
+  text-align: center;
+}
+.venu-pricing-subheadline {
+  text-align: center;
+  font-size: 1rem;
+  color: #57534e;
+  margin: 0 0 2.5rem;
+}
+
+.venu-pricing-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  align-items: stretch;
+}
+@media (min-width: 640px) { .venu-pricing-cards { grid-template-columns: 1fr 1fr; gap: 2rem; align-items: stretch; } }
+
+.venu-tier-card {
+  position: relative;
+  background: #fff;
+  border: 1px solid #e7e5e4;
+  border-radius: 12px;
+  padding: 1.75rem;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.venu-tier-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px -8px rgba(0,0,0,0.12);
+  border-color: #d6d3d1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .venu-tier-card { transition: box-shadow 0.2s, border-color 0.2s; }
+  .venu-tier-card:hover { transform: none; }
+}
+
+.venu-tier-pro {
+  border-color: rgba(184,134,11,0.35);
+  box-shadow: 0 4px 12px -4px rgba(184,134,11,0.15);
+  padding: 1.75rem;
+}
+@media (min-width: 640px) {
+  .venu-tier-pro:hover { box-shadow: 0 12px 24px -8px rgba(184,134,11,0.22); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .venu-tier-pro:hover { transform: none; }
+}
+
+.venu-tier-badge {
+  position: absolute;
+  top: -0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--venu-accent);
+  color: #fff;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.35rem 0.75rem;
+  border-radius: 9999px;
+}
+
+.venu-tier-name {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: 1.35rem;
+  font-weight: 400;
+  color: #1c1917;
+  margin: 0 0 0.5rem;
+}
+.venu-tier-pro .venu-tier-name { margin-top: 0.75rem; }
+
+.venu-tier-price {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1c1917;
+  margin: 0 0 0.25rem;
+}
+.venu-tier-plus { font-weight: 400; color: #78716c; }
+.venu-tier-period { font-size: 0.9375rem; font-weight: 500; color: #57534e; }
+
+.venu-tier-subtitle {
+  font-size: 0.875rem;
+  color: #78716c;
+  margin: 0 0 1.25rem;
+}
+
+.venu-tier-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  flex: 1;
+}
+.venu-tier-features li { padding: 0.3rem 0; padding-left: 1.5rem; position: relative; }
+.venu-tier-yes { color: #44403c; }
+.venu-tier-yes::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--venu-accent);
+  font-weight: 700;
+}
+.venu-tier-no { color: #a8a29e; }
+.venu-tier-no::before {
+  content: "✗";
+  position: absolute;
+  left: 0;
+  color: #d6d3d1;
+}
+
+.venu-tier-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 44px;
+  margin-top: auto;
+  padding: 0.75rem 1.25rem;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  border-radius: 8px;
+  text-align: center;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+.venu-tier-cta-outline {
+  background: transparent;
+  color: var(--venu-red);
+  border: 2px solid var(--venu-red);
+}
+.venu-tier-cta-outline:hover { background: rgba(139,21,56,0.06); color: var(--venu-red); text-decoration: none; }
+.venu-tier-cta-solid {
+  background: var(--venu-accent);
+  color: #fff;
+  border: 2px solid var(--venu-accent);
+}
+.venu-tier-cta-solid:hover { background: #9a7209; border-color: #9a7209; color: #fff; text-decoration: none; }
+
+.venu-pricing-footer { margin-top: 2.5rem; }
+.venu-pricing-divider {
+  height: 1px;
+  background: #e7e5e4;
+  margin-bottom: 1.5rem;
+}
+.venu-pricing-website {
+  display: block;
+  text-align: center;
+  font-size: 0.9375rem;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+  background: rgba(18, 52, 59, 0.75);
+  color: #fffefc;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  max-width: 32rem;
+  text-decoration: none;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+.venu-pricing-website strong { font-weight: 700; }
+.venu-pricing-website:hover {
+  background: rgba(18, 52, 59, 0.88);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #fffefc;
+}
+
+/* Final CTA – deep red, texture, floating testimonials */
+.venu-cta-section {
+  position: relative;
+  background: var(--venu-red-dark);
+  background: #6B0F2A;
+  padding: 5rem 1.5rem 7rem;
+  text-align: center;
+  overflow: hidden;
+}
+@media (min-width: 640px) { .venu-cta-section { padding: 6rem 2rem 8rem; } }
+
+.venu-cta-texture {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+}
+.venu-cta-texture::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+.venu-cta-testimonials {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.venu-cta-quote {
+  position: absolute;
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.28);
+  font-style: italic;
+  white-space: nowrap;
+  max-width: 140px;
+  white-space: normal;
+  line-height: 1.3;
+  z-index: 0;
+}
+.venu-cta-quote-1 { top: 8%; left: 2%; transform: rotate(-6deg); }
+.venu-cta-quote-2 { top: 22%; right: 2%; transform: rotate(4deg); }
+.venu-cta-quote-3 { top: 38%; left: 2%; transform: rotate(-2deg); }
+.venu-cta-quote-4 { top: 54%; left: 2%; transform: rotate(2deg); }
+.venu-cta-quote-5 { top: 78%; left: 2%; transform: rotate(-3deg); }
+.venu-cta-quote-6 { bottom: 6%; right: 2%; transform: rotate(5deg); }
+@media (min-width: 640px) {
+  .venu-cta-quote { font-size: 0.8125rem; max-width: 160px; color: rgba(255,255,255,0.32); }
+  .venu-cta-quote-1 { left: 3%; top: 10%; }
+  .venu-cta-quote-2 { right: 3%; top: 22%; }
+  .venu-cta-quote-3 { left: 3%; top: 38%; }
+  .venu-cta-quote-4 { left: 3%; top: 54%; }
+  .venu-cta-quote-5 { left: 3%; top: 78%; }
+  .venu-cta-quote-6 { right: 3%; bottom: 8%; }
+}
+
+.venu-cta-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 36rem;
+  margin: 0 auto;
+}
+
+.venu-cta-headline {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: clamp(1.875rem, 4.5vw, 2.75rem);
+  font-weight: 400;
+  color: #fff;
+  margin: 0 0 1rem;
+  line-height: 1.2;
+}
+.venu-cta-subheadline {
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.9);
+  margin: 0 0 2rem;
+}
+@media (min-width: 640px) { .venu-cta-subheadline { font-size: 1.125rem; } }
+
+.venu-cta-main-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 1rem 2rem;
+  background: var(--venu-accent);
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.125rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+.venu-cta-main-btn:hover { background: #9a7209; color: #fff; text-decoration: none; }
+@media (prefers-reduced-motion: no-preference) {
+  .venu-cta-main-btn { animation: venu-cta-pulse 2.5s ease-in-out infinite; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .venu-cta-main-btn { animation: none; }
+}
+@keyframes venu-cta-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(184,134,11,0.35); }
+  50% { box-shadow: 0 0 0 12px rgba(184,134,11,0); }
+}
+
+.venu-cta-note {
+  margin: 1.25rem 0 0;
+  font-size: 0.875rem;
+  color: rgba(255,255,255,0.75);
+}
+
+/* Footer – dark navy (match problem block), accent top border, three columns */
+.venu-footer {
+  border-top: 2px solid rgba(184,134,11,0.4);
+  background: #0A1628;
+  padding: 0;
+  color: rgba(255,255,255,0.88);
+}
+
+.venu-footer-main {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .venu-footer-main {
+    grid-template-columns: 1fr auto 1fr;
+    text-align: left;
+    align-items: start;
+    padding: 2.5rem 2rem 1.5rem;
+  }
+  .venu-footer-links { justify-self: center; text-align: center; }
+  .venu-footer-powered { justify-self: end; text-align: right; }
+}
+
+.venu-footer-brand .venu-logo {
+  font-size: 1.35rem;
+  color: #fff;
+}
+.venu-footer-brand .venu-logo:hover { color: var(--venu-accent); text-decoration: none; }
+.venu-footer-tagline {
+  margin: 0.25rem 0 0;
+  font-size: 0.875rem;
+  color: rgba(255,255,255,0.7);
+}
+
+.venu-footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+.venu-footer-links a {
+  color: rgba(255,255,255,0.88);
+  font-size: 0.9375rem;
+  text-decoration: none;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0;
+}
+.venu-footer-links a:hover { color: #fff; text-decoration: underline; }
+
+.venu-footer-powered {
+  margin: 0;
+  font-size: 0.875rem;
+  color: rgba(255,255,255,0.7);
+}
+.venu-footer-powered a { color: rgba(255,255,255,0.95); }
+.venu-footer-powered a:hover { color: var(--venu-accent); text-decoration: none; }
+
+.venu-footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding: 1rem 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  max-width: 72rem;
+  margin: 0 auto;
+}
+@media (min-width: 768px) { .venu-footer-bottom { justify-content: space-between; padding: 1rem 2rem; } }
+
+.venu-footer-copy,
+.venu-footer-built {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: rgba(255,255,255,0.6);
+}
+
+/* Floating Chat button – accent, bottom right (UI only) */
+.venu-chat-btn {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 40;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0.625rem 1.25rem;
+  background: var(--venu-accent);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.875rem;
+  border-radius: 9999px;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(184,134,11,0.35);
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+.venu-chat-btn:hover { background: #9a7209; color: #fff; text-decoration: none; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(184,134,11,0.45); }
+@media (prefers-reduced-motion: reduce) { .venu-chat-btn:hover { transform: none; } }
+@media (max-width: 390px) { .venu-chat-btn { right: 1rem; bottom: 1rem; padding: 0.5rem 1rem; font-size: 0.8125rem; } }
+
+@media (max-width: 640px) {
+  .venu-hero-btns a { width: 100%; text-align: center; min-height: 48px; }
+}
+
+/* —— Demos page (venu-demos.html) —— */
+.venu-demos-hero { padding-bottom: 2rem; }
+.venu-demos-title {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 400;
+  color: #1c1917;
+  margin: 0 0 0.5rem;
+}
+.venu-demos-lead { max-width: 36rem; }
+.venu-demos-grid {
+  display: grid;
+  gap: 2rem;
+}
+@media (min-width: 640px) {
+  .venu-demos-grid { grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); }
+}
+.venu-demo-card {
+  background: #fff;
+  border: 1px solid #e7e5e4;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+.venu-demo-card:hover {
+  box-shadow: 0 12px 24px -8px rgba(0,0,0,0.12);
+  border-color: #d6d3d1;
+}
+.venu-demo-card-preview {
+  position: relative;
+  background: #0D0D0D;
+  min-height: 140px;
+  padding: 1rem 1.25rem;
+}
+.venu-demo-card-badge {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: rgba(255,255,255,0.6);
+}
+.venu-demo-card-mock-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: #FF6B00;
+}
+.venu-demo-card-mock-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+.venu-demo-card-mock-wordmark {
+  font-family: 'Barlow Condensed', 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  letter-spacing: 0.02em;
+  color: #fff;
+}
+.venu-demo-card-mock-tagline {
+  font-size: 0.75rem;
+  color: rgba(192,192,192,0.9);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.venu-demo-card-mock-meta {
+  margin-top: 0.75rem;
+  display: flex;
+  gap: 0.75rem;
+  font-size: 0.75rem;
+  color: rgba(192,192,192,0.8);
+}
+.venu-demo-card-body { padding: 1.25rem 1.5rem; }
+.venu-demo-card-title {
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: #1c1917;
+  margin: 0 0 0.5rem;
+}
+.venu-demo-card-desc {
+  font-size: 0.9375rem;
+  color: #57534e;
+  line-height: 1.5;
+  margin: 0 0 1rem;
+}
+.venu-demo-card-cta {
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: var(--venu-red);
+  text-decoration: none;
+}
+.venu-demo-card-cta:hover { color: var(--venu-red-dark); text-decoration: underline; }
+
+/* Lumière card variant (cream, gold, Venu+) */
+.venu-demo-card-preview-lumiere { background: #FAF7F2; min-height: 140px; }
+.venu-demo-card-badge-plus {
+  background: #C9A84C;
+  color: #1C1C1E;
+  font-weight: 700;
+}
+.venu-demo-card-mock-lumiere {
+  padding: 1rem 1.25rem;
+  text-align: center;
+}
+.venu-demo-card-mock-lumiere-wordmark {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 600;
+  font-size: 1.5rem;
+  letter-spacing: 0.06em;
+  color: #1C1C1E;
+}
+.venu-demo-card-mock-lumiere-tagline {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #C9A84C;
+  margin-top: 0.15rem;
+}
+.venu-demo-card-mock-lumiere-meta {
+  margin-top: 0.6rem;
+  font-size: 0.7rem;
+  color: rgba(28,28,30,0.7);
+}
+
+.venu-nav-active { font-weight: 600; }
