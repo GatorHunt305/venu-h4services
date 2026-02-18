@@ -150,6 +150,20 @@
 }
 .venu-cta-btn:hover { background: #9a7209; color: #fff !important; text-decoration: none; border-color: #7a5c07; }
 
+.venu-nav-website-cta {
+  margin-left: auto;
+  padding: 0.4rem 0.75rem !important;
+  font-size: 0.8125rem !important;
+  border: 1px solid #12343b;
+  border-radius: 6px;
+  color: #fffefc !important;
+  background: #12343b; /* H4 Services midnight teal */
+}
+.venu-nav-website-cta:hover { background: #0f2a30; border-color: #0f2a30; color: #fffefc !important; text-decoration: none; }
+.venu-header-scrolled .venu-nav-website-cta { background: #12343b; border-color: #12343b; color: #fffefc !important; }
+.venu-header-scrolled .venu-nav-website-cta:hover { background: #0f2a30; border-color: #0f2a30; color: #fffefc !important; }
+@media (max-width: 767px) { .venu-nav-website-cta { margin-left: 0; margin-top: 0.25rem; } }
+
 /* Hero – full viewport, left copy + right phone mockup, animated mesh, staggered fade-in */
 .venu-hero {
   position: relative;
@@ -281,6 +295,15 @@
 .venu-hero-cta-secondary:hover { color: var(--venu-red-dark); text-decoration: none; }
 .venu-hero-cta-secondary .venu-arrow { transition: transform 0.2s; }
 .venu-hero-cta-secondary:hover .venu-arrow { transform: translateX(4px); }
+
+.venu-hero-website-link {
+  font-size: 0.8125rem;
+  color: #78716c;
+  margin: 1rem 0 0;
+}
+.venu-hero-website-link a { color: #57534e; font-weight: 500; }
+.venu-hero-website-link a:hover { color: var(--venu-red); text-decoration: underline; }
+.venu-hero-website-link { text-align: center; }
 
 @keyframes venu-fade-up {
   to { opacity: 1; transform: translateY(0); }
@@ -1399,6 +1422,82 @@
   border-color: rgba(255, 255, 255, 0.2);
   color: #fffefc;
 }
+
+/* Pricing: Website + Venu+ bundle (third card, full width below) */
+.venu-pricing-bundle {
+  margin-top: 2.5rem;
+  text-align: center;
+}
+.venu-pricing-bundle-headline {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: 1.35rem;
+  font-weight: 400;
+  color: #1c1917;
+  margin: 0 0 0.35rem;
+}
+.venu-pricing-bundle-subhead {
+  font-size: 1rem;
+  color: #57534e;
+  margin: 0 0 1.5rem;
+}
+.venu-pricing-bundle-card-wrap {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.venu-tier-card-bundle {
+  width: 100%;
+  max-width: 56rem; /* same as .venu-pricing-inner – spans combined width of two cards above */
+  background: rgba(18, 52, 59, 0.06);
+  border: 1px solid rgba(18, 52, 59, 0.2);
+  border-radius: 12px;
+  padding: 1.75rem 2rem;
+  margin: 0 auto;
+}
+.venu-tier-card-bundle:hover {
+  border-color: rgba(18, 52, 59, 0.35);
+  box-shadow: 0 8px 24px -8px rgba(18, 52, 59, 0.15);
+}
+.venu-tier-badge-bundle {
+  background: rgba(18, 52, 59, 0.85);
+  color: #fffefc;
+}
+.venu-tier-card-bundle .venu-tier-name { margin-top: 0.75rem; }
+.venu-tier-price-month { margin-top: 0; font-size: 1.1rem; }
+.venu-pricing-cards + .venu-pricing-bundle { margin-top: 2.5rem; }
+
+@media (max-width: 639px) {
+  .venu-pricing-cards { gap: 1.5rem; }
+  .venu-tier-card-bundle { margin-top: 0; }
+}
+
+/* Pricing: How do I choose? */
+.venu-pricing-choose {
+  margin-top: 2rem;
+  padding: 1.25rem 1rem;
+  text-align: left;
+  max-width: 36rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+.venu-pricing-choose-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #44403c;
+  margin: 0 0 0.75rem;
+}
+.venu-pricing-choose-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.9375rem;
+  color: #57534e;
+  line-height: 1.6;
+}
+.venu-pricing-choose-list li { margin-bottom: 0.5rem; padding-left: 1rem; position: relative; }
+.venu-pricing-choose-list li::before { content: "→"; position: absolute; left: 0; color: var(--venu-accent); font-weight: 600; }
+.venu-pricing-choose-list a { color: var(--venu-red); font-weight: 600; }
+.venu-pricing-choose-list a:hover { text-decoration: underline; }
 
 /* Final CTA – deep red, texture, floating testimonials */
 .venu-cta-section {
