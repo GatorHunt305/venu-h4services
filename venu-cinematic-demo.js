@@ -459,6 +459,7 @@
   }
 
   function startDemo() {
+    paused = false;
     startTime = Date.now();
     tickHandled = {};
     pausedByOwner = false;
@@ -467,6 +468,10 @@
     goToStage(1);
     phoneScreen.style.opacity = '';
     phoneScreen.style.transition = '';
+    if (pauseBtn) {
+      pauseBtn.textContent = '⏸ Pause';
+      pauseBtn.setAttribute('aria-label', 'Pause demo');
+    }
     rafId = requestAnimationFrame(tick);
   }
 
@@ -494,9 +499,6 @@
     section.classList.add('is-visible', 'demo-started');
     if (playOverlay) playOverlay.setAttribute('aria-hidden', 'true');
     startDemo();
-    if (section && typeof section.scrollIntoView === 'function') {
-      section.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
   }
   if (playOverlay) {
     playOverlay.addEventListener('click', onPlayOverlayClick);
