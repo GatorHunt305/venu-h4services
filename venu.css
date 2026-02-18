@@ -677,11 +677,11 @@
 
 .venu-problem-bubbles {
   position: relative;
-  min-height: 380px;
+  min-height: 420px;
   margin: 0 auto 2rem;
   max-width: 30rem;
 }
-@media (min-width: 640px) { .venu-problem-bubbles { min-height: 360px; max-width: 34rem; } }
+@media (min-width: 640px) { .venu-problem-bubbles { min-height: 400px; max-width: 34rem; } }
 
 .venu-bubble {
   position: absolute;
@@ -703,19 +703,19 @@
 }
 .venu-bubble-1 { top: 0; left: 0; transform: rotate(-6deg); z-index: 1; }
 .venu-bubble-2 { top: 3rem; right: 0; transform: rotate(5deg); z-index: 2; background: #fecaca !important; color: #991b1b !important; }
-.venu-bubble-3 { top: 9rem; left: 0; transform: rotate(-2deg); z-index: 3; background: #fecaca; color: #991b1b; }
-.venu-bubble-4 { top: 9rem; right: 5%; transform: rotate(3deg); z-index: 4; }
-.venu-bubble-5 { top: 13.5rem; left: 2%; transform: rotate(-4deg); z-index: 5; }
-.venu-bubble-6 { top: 15.5rem; right: 0; transform: rotate(2deg); z-index: 6; }
-.venu-bubble-7 { top: 18rem; left: 8%; transform: rotate(1deg); z-index: 7; background: #fecaca; color: #991b1b; }
+.venu-bubble-3 { top: 8rem; left: 0; transform: rotate(-2deg); z-index: 3; background: #fecaca; color: #991b1b; }
+.venu-bubble-4 { top: 11.5rem; right: 0; transform: rotate(3deg); z-index: 4; }
+.venu-bubble-5 { top: 15rem; left: 2%; transform: rotate(-4deg); z-index: 5; }
+.venu-bubble-6 { top: 17.5rem; right: 0; transform: rotate(2deg); z-index: 6; }
+.venu-bubble-7 { top: 20rem; left: 8%; transform: rotate(1deg); z-index: 7; background: #fecaca; color: #991b1b; }
 @media (min-width: 640px) {
   .venu-bubble-1 { left: 2%; }
   .venu-bubble-2 { top: 2.5rem; right: 2%; }
   .venu-bubble-3 { top: 8.5rem; left: 2%; }
-  .venu-bubble-4 { top: 9.5rem; right: 8%; }
-  .venu-bubble-5 { top: 13rem; left: 0; }
-  .venu-bubble-6 { top: 15rem; right: 3%; }
-  .venu-bubble-7 { top: 17rem; left: 5%; }
+  .venu-bubble-4 { top: 11rem; right: 8%; }
+  .venu-bubble-5 { top: 14rem; left: 0; }
+  .venu-bubble-6 { top: 16.5rem; right: 3%; }
+  .venu-bubble-7 { top: 19rem; left: 5%; }
 }
 
 .venu-problem-cta {

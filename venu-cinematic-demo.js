@@ -494,6 +494,9 @@
     section.classList.add('is-visible', 'demo-started');
     if (playOverlay) playOverlay.setAttribute('aria-hidden', 'true');
     startDemo();
+    if (section && typeof section.scrollIntoView === 'function') {
+      section.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
   }
   if (playOverlay) {
     playOverlay.addEventListener('click', onPlayOverlayClick);
@@ -516,7 +519,7 @@
         }
         /* Demo starts only when user clicks play overlay */
       } else {
-        pauseDemo();
+        if (!section.classList.contains('demo-started')) pauseDemo();
       }
     });
   }, { rootMargin: '0px', threshold: 0.15 });

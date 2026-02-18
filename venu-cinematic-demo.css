@@ -18,6 +18,11 @@
   padding: 4rem 1.5rem 5rem;
   overflow: hidden;
 }
+@media (max-width: 899px) {
+  .venu-demo-section { padding: 2.5rem 1rem 3rem; }
+  .venu-demo-headline { font-size: clamp(1.5rem, 5vw, 1.75rem); margin-bottom: 0.5rem; }
+  .venu-demo-subhead { font-size: 0.875rem; margin-bottom: 2rem; }
+}
 
 .venu-demo-bg {
   position: absolute;
@@ -665,11 +670,17 @@
 .venu-demo-stage {
   position: absolute;
   inset: 0;
-  padding: 2.5rem 1rem 1.5rem;
+  padding: 1.5rem 1rem 1rem;
   overflow-y: auto;
+  overflow-x: hidden;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.2s ease;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.venu-demo-stage::-webkit-scrollbar {
+  display: none;
 }
 
 .venu-demo-stage.is-visible {
@@ -695,21 +706,21 @@
 }
 
 /* —— Stage 1–7 content (Lumière-style mini UI) —— */
-.vd-header { text-align: center; padding-bottom: 0.75rem; }
-.vd-rule { width: 2.5rem; height: 1px; background: var(--vd-gold); margin: 0 auto 0.5rem; opacity: 0.8; }
-.vd-wordmark { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 600; font-size: 1.5rem; color: var(--vd-charcoal); margin: 0 0 0.15rem; }
-.vd-tagline { font-size: 0.625rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--vd-gold); margin: 0 0 0.25rem; }
-.vd-meta { font-size: 0.6875rem; color: rgba(28,28,30,0.7); }
-.vd-header-small .vd-wordmark { font-size: 1.125rem; }
-.vd-header-small .vd-tagline { font-size: 0.5625rem; }
+.vd-header { text-align: center; padding-bottom: 0.5rem; }
+.vd-rule { width: 2.5rem; height: 1px; background: var(--vd-gold); margin: 0 auto 0.35rem; opacity: 0.8; }
+.vd-wordmark { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 600; font-size: 1.35rem; color: var(--vd-charcoal); margin: 0 0 0.1rem; }
+.vd-tagline { font-size: 0.5625rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--vd-gold); margin: 0 0 0.2rem; }
+.vd-meta { font-size: 0.625rem; color: rgba(28,28,30,0.7); }
+.vd-header-small .vd-wordmark { font-size: 1.0625rem; }
+.vd-header-small .vd-tagline { font-size: 0.5rem; }
 
 .vd-services-list { border: 1px solid rgba(201,168,76,0.2); border-radius: 8px; overflow: hidden; background: rgba(255,255,255,0.5); }
 .vd-service-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.6rem 0.75rem;
-  font-size: 0.8125rem;
+  padding: 0.45rem 0.65rem;
+  font-size: 0.75rem;
   color: var(--vd-charcoal);
   border-bottom: 1px solid rgba(28,28,30,0.06);
   transition: background 0.2s, border-left 0.2s;
@@ -1012,19 +1023,53 @@
   }
 }
 
-/* —— Mobile: narrative below phone —— */
+/* —— Mobile: narrative below phone, no overlap —— */
+@media (max-width: 899px) {
+  .venu-demo-narrative { display: none !important; }
+  .venu-demo-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+  .venu-demo-phone-zone {
+    min-height: 0;
+    width: 100%;
+    max-width: 100%;
+    flex-shrink: 0;
+  }
+  .venu-demo-phones-container { min-height: 0; max-width: 100%; }
+  .venu-demo-phone-frame {
+    width: 260px;
+    max-width: min(280px, calc(100vw - 1.5rem));
+  }
+}
+
 .venu-demo-mobile-narrative {
   display: block;
-  margin-top: 1.5rem;
+  margin-top: 1.25rem;
+  padding: 0 1rem 0.5rem;
   text-align: center;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 @media (min-width: 900px) {
   .venu-demo-mobile-narrative { display: none; }
 }
 
-.venu-demo-mobile-narrative .venu-demo-narrative-headline { font-size: 1.25rem; }
-.venu-demo-mobile-narrative .venu-demo-narrative-text { font-size: 0.9375rem; color: rgba(255,255,255,0.75); }
+.venu-demo-mobile-narrative .venu-demo-narrative-headline {
+  font-size: clamp(1.125rem, 4.5vw, 1.35rem);
+  line-height: 1.3;
+  margin: 0 0 0.5rem;
+  color: #fff;
+}
+.venu-demo-mobile-narrative .venu-demo-narrative-text {
+  font-size: clamp(0.875rem, 2.5vw, 0.9375rem);
+  line-height: 1.5;
+  color: rgba(255,255,255,0.85);
+  margin: 0;
+}
 
 /* —— Reduced motion: static only —— */
 @media (prefers-reduced-motion: reduce) {
