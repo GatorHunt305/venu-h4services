@@ -292,6 +292,13 @@
   transform: translateY(0);
 }
 
+/* When started via play button, show phone immediately (no transition delay) */
+.venu-demo-section.demo-started .venu-demo-phone-wrap {
+  transition: none;
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* Play overlay – large semi-transparent play button over customer phone */
 .venu-demo-play-overlay {
   position: absolute;
@@ -898,21 +905,9 @@
   100% { transform: translate(-50%, -50%) scale(2); opacity: 0; }
 }
 
-/* —— Controls —— */
+/* —— Controls (removed: play overlay only, demo runs on repeat) —— */
 .venu-demo-controls {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  margin-top: 1.25rem;
-  padding: 0.5rem;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.venu-demo-phone-zone:hover .venu-demo-controls,
-.venu-demo-controls.is-visible {
-  opacity: 1;
+  display: none !important;
 }
 
 .venu-demo-dots {

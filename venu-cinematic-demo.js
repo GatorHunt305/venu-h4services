@@ -467,7 +467,7 @@
     goToStage(1);
     phoneScreen.style.opacity = '';
     phoneScreen.style.transition = '';
-    if (!rafId) rafId = requestAnimationFrame(tick);
+    rafId = requestAnimationFrame(tick);
   }
 
   function pauseDemo() {
@@ -491,7 +491,7 @@
 
   function onPlayOverlayClick() {
     if (startTime !== null) return;
-    section.classList.add('demo-started');
+    section.classList.add('is-visible', 'demo-started');
     if (playOverlay) playOverlay.setAttribute('aria-hidden', 'true');
     startDemo();
   }
