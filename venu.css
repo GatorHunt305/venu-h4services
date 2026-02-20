@@ -1853,3 +1853,42 @@
 }
 
 .venu-nav-active { font-weight: 600; }
+
+/* Privacy Policy page – legible legal layout */
+.venu-privacy-section { padding: 3rem 1.5rem 4rem; }
+@media (min-width: 640px) { .venu-privacy-section { padding: 4rem 2rem 5rem; } }
+.venu-privacy-content { text-align: left; max-width: 48rem; margin: 0 auto; }
+.venu-privacy-title {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  font-weight: 400;
+  color: var(--venu-red);
+  margin: 0 0 2rem;
+  border-bottom: 2px solid rgba(184,134,11,0.35);
+  padding-bottom: 1rem;
+}
+.venu-privacy-h2 {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: #1c1917;
+  margin: 2rem 0 0.75rem;
+}
+.venu-privacy-block:first-of-type .venu-privacy-h2 { margin-top: 0; }
+.venu-privacy-block p { margin: 0 0 0.75rem; font-size: 0.9375rem; line-height: 1.65; color: #44403c; }
+.venu-privacy-block p:last-child { margin-bottom: 0; }
+.venu-privacy-block a { color: var(--venu-red); text-decoration: none; }
+.venu-privacy-block a:hover { text-decoration: underline; }
+.venu-privacy-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 0.75rem;
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: #44403c;
+}
+.venu-privacy-list li { margin-bottom: 0.5rem; padding-left: 1.25rem; position: relative; }
+.venu-privacy-list li::before { content: "·"; position: absolute; left: 0; color: var(--venu-accent); font-weight: 700; }
+.venu-privacy-sms { background: rgba(139,21,56,0.04); border: 1px solid rgba(139,21,56,0.12); border-radius: 12px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+.venu-footer-privacy-link { color: rgba(255,255,255,0.6); font-size: 0.8125rem; text-decoration: none; }
+.venu-footer-privacy-link:hover { color: rgba(255,255,255,0.9); text-decoration: underline; }
