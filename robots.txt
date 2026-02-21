@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://venu.h4services.co/sitemap.xml
